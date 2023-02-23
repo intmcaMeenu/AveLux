@@ -85,6 +85,7 @@ text-decoration:none;
    <tr>
    <th>  Name </th>
  <td>  <?php  echo  $row['Name'];?></td>
+ <!-- commentt -->
    </tr>
    <tr>
   <th>Phone </th>
