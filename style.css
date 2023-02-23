@@ -1,0 +1,90 @@
+body
+{
+    background-image: linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0.55)),url('backhome.jpg');
+    background-size: cover;
+    width:98%;
+    height:98vh;
+}
+.header
+{
+    width:85%;
+    display:flex;
+    justify-content:space-between;
+    color:white;
+    margin:30px;
+
+
+}
+.header li
+{
+list-style-type: none;
+display: inline-block;
+margin-left: 30px;
+font-size: 20px;
+text-transform: uppercase;
+cursor: pointer;
+}
+.header li:hover
+{
+color:rgb(9, 3, 3)
+}
+button
+{
+    background-color:rgb(95, 56, 56);
+    padding: 10px;
+    color: white;
+    width: 100px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight:medium;
+    border-radius: 25px;
+}
+.body-section
+{
+    width:50%;
+    margin: 10% 0 0 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    flex-direction: column;
+}
+h1
+{
+    font-size:38px;
+}
+.body-section button
+{
+    background-color:rgb(95, 56, 56);
+    padding: 10px;
+    color: white;
+    width: 110px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+.body-section button:hover
+{
+    background-color:white;
+    color:rgb(95, 56, 56) ;
+
+}
+.body-section contact
+{
+    background-color:white;
+    padding: 10px;
+    color:rgb(95, 56, 56);
+    width: 110px;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration:none;
+}
+.body-section contact
+{
+    background-color:rgb(95, 56, 56);
+    color:rgb(95, 56, 56);
+ 
+}
+a {
+    all: unset;
+  }
