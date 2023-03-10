@@ -1,7 +1,5 @@
 body
 {
-    background-image: linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0.55)),url('backhome.jpg');
-    background-size: cover;
     width:98%;
     height:98vh;
 }

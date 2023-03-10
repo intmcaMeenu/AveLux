@@ -17,7 +17,7 @@ font-family:sans-serif;
 .fm
 {
 width:320px;
-height:400px;
+height:420px;
 background:rgb(89, 60, 60);
 color:#fff;
 top:50%;
@@ -106,7 +106,7 @@ color:darkgrey;
  <input id="s" type="submit" value="Login" name="sub"/><br>
 <a href="userregister.php">Don't have an account?</a><br><br>
 <a href="index.php">Cancel</a><br><br>
-<span class="hidden" style="font-family:cursive; font-size:12px; color:red;">"Username and password does not match"</span>
+<span class="hidden" style="font-family:cursive; font-size:13px; color:red;">"Username and password does not match"</span>
 </div>
 </form>
 <?php
@@ -121,11 +121,17 @@ if(isset($_POST["sub"]))
    $re=mysqli_query($con,$query);
    $row=mysqli_fetch_array($re);
    $count=mysqli_num_rows($re);
-   if($count>0)
+   if($count>0 )
    {
-	      $id=$row['custid'];
+	      if($row['status']==0)
+		  {
+			$id=$row['custid'];
 		  $_SESSION['loginid']=$id;
 		  header('location: indexlog.php');
+		  }
+		  else{
+			?><span class="hidden" id="msg" style="font-family:cursive; font-size:13px; color:red;" >"you are not allowed to enter"</span><?php
+		  }
    }
    else
    { 

@@ -10,7 +10,7 @@
 
 .full
 {
-height:115%;
+height:155%;
 background-image: linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0.55)),url('backhome.jpg');
 background-size:cover;
 font-family:sans-serif;
@@ -22,10 +22,10 @@ width:200vh;
 .signform
 {
 width:500px;
-height:95%;
+height:125%;
 background:rgb(89, 60, 60);
 color:#fff;
-margin-top:48vh;
+margin-top:65vh;
 left:50%;
 position:absolute;
 transform:translate(-50%,-50%);
@@ -50,7 +50,7 @@ input
 width:100%;
 margin-bottom:20px;
 }
-#nm,#ph,#Username,#password1,#password2
+#nm,#ph,#housename,#place,#Username,#password1,#password2
 {
 border:none;
 border-bottom:1px solid #fff;
@@ -93,6 +93,7 @@ color:darkgrey;
 	var v4=0;
 	var v5=0;
 	var v6=0;
+    var v7=0;
  
 
         $(document).ready(function () 
@@ -133,16 +134,42 @@ color:darkgrey;
                 }
             });
 
+            var hname = /^[a-zA-Z\s]*$/;
+            $("#housename").keyup(function () {
+                x = document.getElementById("housename").value;
+                if (hname.test(x) == false) {
+                     v6 = 1
+                    $("#error3").show();
+                }
+                else if (hname.test(x) == true) {
+                   v6 = 0;
+                    $("#error3").hide();
+                }
+            });
+
+            var place = /^[a-zA-Z\s]*$/;
+            $("#place").keyup(function () {
+                x = document.getElementById("place").value;
+                if (place.test(x) == false) {
+                     v7 = 1
+                    $("#error4").show();
+                }
+                else if (place.test(x) == true) {
+                   v7 = 0;
+                    $("#error4").hide();
+                }
+            });
+
             var uname = /^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/;
 $("#username").keyup(function () {
     x = document.getElementById("username").value;
     if (uname.test(x) == false) {
          v3 = 1
-        $("#error3").show();
+        $("#error5").show();
     }
     else if (uname.test(x) == true) {
        v3 = 0;
-        $("#error3").hide();
+        $("#error5").hide();
     }
 });
 
@@ -151,16 +178,16 @@ $("#username").keyup(function () {
             x = document.getElementById("password1").value;
             y = document.getElementById("password2").value;
 
-			   psw1= /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
+			   psw1= /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*/#?&])[A-Za-z\d@$!/%*#?&]{6,}$/;
                $("#password1").keyup(function () {
                 x1 = document.getElementById("password1").value;
                 if (psw1.test(x1) == false) {
                      v4 = 1
-                    $("#error4").show();
+                    $("#error6").show();
                 }
                 else if (psw1.test(x1) == true) {
                    v4 = 0;
-                    $("#error4").hide();
+                    $("#error6").hide();
                 }
             });
 
@@ -170,19 +197,19 @@ $("#username").keyup(function () {
                 if ((document.getElementById("password1").value != document.getElementById("password2").value)&&(psw2.test(y1) == false) ) 
 				{
                      v5 = 1
-                    $("#error5").show();
+                    $("#error7").show();
                 }
                 else if (document.getElementById("password1").value == document.getElementById("password2").value)
 					{
                    v5 = 0;
-                    $("#error5").hide();
+                    $("#error7").hide();
                 }
             });
 		
 			
             $("#submit").click(function () {
-                if (v1==0 && v2==0 && v3==0 && v4==0 && v5==0)
-                    $("#error6").hide();
+                if (v1==0 && v2==0 && v3==0 && v4==0 && v5==0 && v6==0 && v7==0)
+                    $("#error8").hide();
                 else
 				{
                    alert('Please Fill The Form Correctly');
@@ -235,18 +262,30 @@ $('#s').attr("disabled", false);
 <p id="error1"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid Name </p><br><br>
 
 <input type="text" name="phone" id="ph" placeholder="Enter your contact number" required><br>
-<p id="error2"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid Phone Number</p><br><br>
+<p id="error2"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid Phone Number</p><br><br></b></p>
+
+<font color="#fff">Gender:</font>
+<select name="gender" id="gender">
+<option>Female</option>
+<option>Male</option>
+</select><br><br><br>
+
+<input type="text" name="housename" id="housename" placeholder="Enter your house name" required><br>
+<p id="error3"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid House name</p><br><br>
+
+<input type="text" name="place" id="place" placeholder="Enter your place" required><br>
+<p id="error4"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid Place</p><br><br>
 
 <input type="text" name="username" id="username" placeholder="Enter your username" required><br>
-<p id="error3"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid Username</p><br>
+<p id="error5"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid Username</p><br>
 <p id="availability"></p>
 
 <input type="password" name="password" id="password1"  placeholder="Enter your password"required ><br>
-<p id="error4"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid password</p><br><br>
+<p id="error6"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid password</p><br><br>
 
 
 <input type="password" name="cpassword" id="password2" placeholder="Enter confirm password" required><br>
-<p id="error5"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;password doesn't match </p>
+<p id="error7"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;password doesn't match </p>
 <center> 
  <button id="submit" name="sub" id="error6" type="submit">submit</button> <center>
  <br><p id="q">Already have account?<a href="userlogin.php" id="lg"> Login here</a><br></p>
