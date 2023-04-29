@@ -1,8 +1,11 @@
 <!----To Check Password----->
 <?php
+require("connect.php");
+?>
+<?php
 session_start();
 $lid = $_SESSION['loginid'];
-$con = mysqli_connect("localhost", "root", "", "db");
+
 $query = "select * from tbl_login where loginid='$lid'";
 $re = mysqli_query($con, $query);
 $row = mysqli_fetch_array($re);

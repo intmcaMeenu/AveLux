@@ -306,7 +306,7 @@ font-weight: bold;
   <div style="margin-top:-350px">
     
             <?php
-           
+            
              $query="select * from tbl_category";
              $result=mysqli_query($con,$query);
              $re=mysqli_num_rows($result)>0;

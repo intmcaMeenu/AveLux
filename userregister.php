@@ -1,5 +1,7 @@
 
-
+<?php
+require("connect.php");
+?>
 <html>
 <head>
 <title>Ave Lux</title>
@@ -264,12 +266,6 @@ $('#s').attr("disabled", false);
 <input type="text" name="phone" id="ph" placeholder="Enter your contact number" required><br>
 <p id="error2"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid Phone Number</p><br><br></b></p>
 
-<font color="#fff">Gender:</font>
-<select name="gender" id="gender">
-<option>Female</option>
-<option>Male</option>
-</select><br><br><br>
-
 <input type="text" name="housename" id="housename" placeholder="Enter your house name" required><br>
 <p id="error3"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;Enter Valid House name</p><br><br>
 
@@ -287,7 +283,7 @@ $('#s').attr("disabled", false);
 <input type="password" name="cpassword" id="password2" placeholder="Enter confirm password" required><br>
 <p id="error7"><b style='font-family:cursive; font-size:12px; color:red;'> &nbsp;&nbsp;password doesn't match </p>
 <center> 
- <button id="submit" name="sub" id="error6" type="submit">submit</button> <center>
+ <button id="submit" name="sub" id="error6" type="submit">Register</button> <center>
  <br><p id="q">Already have account?<a href="userlogin.php" id="lg"> Login here</a><br></p>
  <br><a href="index.php" id="lg">Cancel</a>
 </div>
@@ -300,8 +296,10 @@ if(isset($_POST["sub"]))
    $ph=$_POST["phone"];
    $un=$_POST["username"];
    $ps=$_POST["password"];
-   $con=mysqli_connect("localhost","root","","db");
-   $query="insert into tbl_user(name,phone)values('$na','$ph')";
+   $hs=$_POST["housename"];
+   $pl=$_POST["place"];
+  
+   $query="insert into tbl_user(name,phone,housename,place)values('$na','$ph','$hs','$pl')";
    $result=mysqli_query($con,$query);
    if($result)
    {

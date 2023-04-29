@@ -1,11 +1,6 @@
 <?php
 require("connect.php");
 ?>
-<?php
- session_start();
- if(isset($_SESSION['loginid']))
- {
-	 ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,73 +14,21 @@ require("connect.php");
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <style>
-        .sidelink 
-            {
-            color:#000;
-            font-size:16px;
-           
-            }
-            #home1
+        #home1
         {
             background-color:rgb(95, 56, 56);
         }
         </style>
-
 </head>
 <body>
     <div class="full">
         <input type="checkbox" id="check">
-        <label for="check">
-            <i class="fas fa-bars" id="btn"></i>
-            <i class="fas fa-times" id="cancel"></i>
-        </label> 
-        <div class="sidebar">
-            <b><header>Hello,
-                <?php
-                $loginid= $_SESSION['loginid'];
-                
-                $query="select * from tbl_user where custid='$loginid';";
-                $re=mysqli_query($con,$query);
-                $row=mysqli_fetch_array($re);
-                echo  $row['Name'];
-                ?>
-            </header></b>
-            <ul>
-                    <a href="userprofileview.php" class="sidelink">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span class="sidelink"><b>  View Profile</span>
-                    </a><br>
-                
-                    <a href="userprofileupdate.php" class="sidelink">
-                    <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                    <span class="sidelink">Update Profile</span>
-                    </a><br>
-
-                    <a href="passform.php" class="sidelink">
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                   <span class="sidelink"><b>Change passsword</span>
-                   </a><br>
-
-                   <a href="bookingdetails.php" class="sidelink">
-                   <i class="fa fa-calendar" aria-hidden="true"></i>
-                   <span class="sidelink"><b>Booking Details</span>
-                   </a><br>
-
-                  <!-- <a href="#" class="sidelink">
-                   <i class="fa solid fa-address-card"></i>
-                   <span class="sidelink"><b>Membership</span>
-                  </a><br>-->
-                  
-                  <a href="logout.php" class="sidelink">
-                  <i class="fa fa-sign-out" aria-hidden="true"></i>
-                  <span class="sidelink"><b>Log Out</span> 
-                  </a><br>
-            </ul>
-        </div>
+        
+       
         <div class="main">
             <div class="heading">
-                <ul><h1 style="margin-left:185px; margin-top:-20px;">
-                <br><a href="indexlog.php"> <button id="home1" class="headlink">Home</button></a>
+                <ul><h1 style="margin-left:170px; margin-top:-20px;">
+                <br><a href="index.php"> <button id="home1" class="headlink">Home</button></a>
                 <a href="#service" > <li class="headlink">Services</li></a>
                 <a href="#about ">   <li class="headlink" >About us</li></a>
                 </ul>
@@ -94,15 +37,15 @@ require("connect.php");
                 <h1>AVE LUX PARLOUR</h1>
                 <p style="font-family:Edwardian Script ITC; font-size:15px;">Beauty begins the moment you decide to be yourself </p>
                 <span>
-                <a href="booking.php"><button>BOOK</button></a>
-                    <a href="contact.php"> <button  class="contact">CONTACT</button></a>
+                <a href="userlogin.php">  <button>LOGIN</button>
+                    <a href="userregister.php"> <button  class="contact">REGISTER</button></a>
             </span>
 
             </div>
         </div>
  </div>
 
- <DIV class="about" id="about">
+<DIV class="about" id="about">
     <br><br><h2>About Us</h2>
     <style>
             .about{
@@ -223,7 +166,10 @@ require("connect.php");
         margin-bottom: 50px;
         width:100px;
     }
-  
+    body{
+    background-color:white;
+    font-family: sans-serif;
+}
 h4{
     text-align: center;
     color: #fff;
@@ -306,7 +252,7 @@ font-weight: bold;
   <div style="margin-top:-350px">
     
             <?php
-           
+             $con=mysqli_connect("localhost","root","","db");
              $query="select * from tbl_category";
              $result=mysqli_query($con,$query);
              $re=mysqli_num_rows($result)>0;
@@ -326,7 +272,7 @@ font-weight: bold;
                                <img id="img1"src="\admin\uploads\<?php echo $row1['category_image'];?>" height=300px width=300px alt="Service image">
                              <font color="brown"size="5"> <center> <h4 class="card-title"><?php echo $row1['category_name']; ?></h4></center></font>
                          
-                             <button><?php echo "<a href='book.php?id=$row1[categoryid]'>"?><font color="black">View More</a></font></button>
+                             <button  onclick="window.location.href = 'index.php';">View More</button>
             </div>
             <div class="back-card"></div>
             <div class="thid-card"></div>
@@ -353,10 +299,6 @@ font-weight: bold;
 </DIV>
 </body>
 </html>
-<?php
- }
- else
- {
-	 header("Location:index.php");
- }
- ?>
+
+
+

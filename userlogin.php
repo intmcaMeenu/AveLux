@@ -1,4 +1,6 @@
-
+<?php
+require("connect.php");
+?>
 <html>
 <head>
 <title>Ave Lux</title>
@@ -105,6 +107,7 @@ color:darkgrey;
      <input id="password" type="password" name="password" placeholder="Enter Password">
  <input id="s" type="submit" value="Login" name="sub"/><br>
 <a href="userregister.php">Don't have an account?</a><br><br>
+<!--<a href="forgot_password.php">Fogot Password?</a><br><br>-->
 <a href="index.php">Cancel</a><br><br>
 <span class="hidden" style="font-family:cursive; font-size:13px; color:red;">"Username and password does not match"</span>
 </div>
@@ -115,23 +118,50 @@ if(isset($_POST["sub"]))
 	
    $un=$_POST["username"];
    $ps=$_POST["password"];
-   $con=mysqli_connect("localhost","root","","db");
+  
    session_start();
    $query="select * from tbl_login where username='$un' and password='$ps'";
+   $query1="select * from tbl_admin where username='$un' and password='$ps'";
+   $query2="select * from tbl_employee where email='$un' and password='$ps'";
+   $re1=mysqli_query($con,$query1);
+   $row=mysqli_fetch_array($re1);
+   $count1=mysqli_num_rows($re1);
    $re=mysqli_query($con,$query);
-   $row=mysqli_fetch_array($re);
+   $row1=mysqli_fetch_array($re);
    $count=mysqli_num_rows($re);
+   $re2=mysqli_query($con,$query2);
+   $row2=mysqli_fetch_array($re2);
+   $count2=mysqli_num_rows($re2);
    if($count>0 )
    {
-	      if($row['status']==0)
+	      if($row1['status']==0)
 		  {
-			$id=$row['custid'];
+			$id=$row1['custid'];
 		  $_SESSION['loginid']=$id;
-		  header('location: indexlog.php');
+		  header('location:indexlog.php');
 		  }
-		  else{
-			?><span class="hidden" id="msg" style="font-family:cursive; font-size:13px; color:red;" >"you are not allowed to enter"</span><?php
-		  }
+   }
+			
+		  
+   
+   else if($count1>0)
+   {
+	      
+	$id=$row['adminid'];
+	$_SESSION['aid']=$id;
+	$_SESSION['logout']="yes";
+	header('location:/admin/main.php');
+
+   }
+
+   else if($count2>0)
+   {
+	      
+	$id=$row2['empid'];
+	$_SESSION['aid']=$id;
+	$_SESSION['logout']="yes";
+	header('location:/admin/mainemployee.php');
+
    }
    else
    { 

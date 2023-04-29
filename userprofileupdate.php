@@ -1,4 +1,7 @@
 <?php
+require("connect.php");
+?>
+<?php
     session_start();
 ?>
 <!DOCTYPE html>
@@ -209,7 +212,7 @@ $('#s').attr("disabled", false);
                         <div class="box">
                         <?php
                             $id=$_SESSION['loginid'];
-                            $con=mysqli_connect("localhost","root","","db");
+                            
                             $query="select * from tbl_user where custid = '$id';";
                             $result=mysqli_query($con,$query);
                             if($result)
@@ -262,7 +265,7 @@ $('#s').attr("disabled", false);
 	{
 		$na=$_POST["name"];
         $ph=$_POST["phone"];
-		$con=mysqli_connect("localhost","root","","db");
+	
 
 		$que="update tbl_user set Name='$na',Phone='$ph' where custid='$id'";
 		$result=mysqli_query($con,$query);

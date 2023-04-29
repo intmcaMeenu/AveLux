@@ -1,6 +1,9 @@
 <?php
     session_start();
 ?>
+<?php
+require("connect.php");
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -107,7 +110,7 @@
                         <div class="box">
                         <?php
                             $id=$_SESSION['loginid'];
-                            $con=mysqli_connect("localhost","root","","db");
+                           
                             $query="select * from tbl_user where custid = '$id';";
                             $result=mysqli_query($con,$query);
                             if($result)

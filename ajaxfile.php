@@ -1,5 +1,7 @@
 <?php
-$connect = mysqli_connect("localhost", "root", "", "db"); 
+require("connect.php");
+?>
+<?php
 if(isset($_POST["username"]))
 {
 $username = mysqli_real_escape_string($connect, $_POST["username"]);

@@ -1,11 +1,15 @@
 <!---Password Change ---->
 <?php
+require("connect.php");
+?>
+<?php
 session_start();
+
 if (isset($_SESSION['loginid'])) {
     $lid = $_SESSION['loginid'];
     if (isset($_POST['submit'])) {
         $ps = $_POST['password'];
-        $con = mysqli_connect("localhost", "root", "", "db");
+        
         $query = "update tbl_login set password='$ps' where loginid='$lid'";
         $re = mysqli_query($con, $query);
         if ($re) {

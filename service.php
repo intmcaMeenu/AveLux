@@ -6,6 +6,9 @@
     session_start();
     */
 ?>
+<?php
+require("connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

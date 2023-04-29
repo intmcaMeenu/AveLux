@@ -1,3 +1,6 @@
+<?php
+require("connect.php");
+?>
 <html>
 <head>
 <title>New Wave</title>
@@ -80,7 +83,7 @@ text-decoration:none;
 
    session_start();
 			$loginid = $_SESSION['loginid'];
-			$con=mysqli_connect("localhost","root","","db");
+			
 			$query="select * from tbl_user where custid='$loginid';";
 			$q="select * from tbl_login where loginid='$loginid';";
 			$re=mysqli_query($con,$query);

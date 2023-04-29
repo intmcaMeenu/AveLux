@@ -1,5 +1,6 @@
-
-
+<?php
+require("connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,12 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
+    <style>
+        #home1
+        {
+            background-color:rgb(95, 56, 56);
+        }
+        </style>
 </head>
 <body>
     <div class="full">
@@ -21,7 +27,7 @@
         <div class="main">
             <div class="heading">
                 <ul><h1 style="margin-left:170px; margin-top:-20px;">
-                <br><a href="index.php"> <button class="headlink">Home</button></a>
+                <br><a href="index.php"> <button id="home1" class="headlink">Home</button></a>
                 <a href="#service" > <li class="headlink">Services</li></a>
                 <a href="#about ">   <li class="headlink" >About us</li></a>
                 </ul>
@@ -115,13 +121,13 @@
     <img src="https://preview.colorlib.com/theme/makeupartist/img/about/about-pic.png.webp">
     </div>
     <div class="content">
-        <p >“Our customers are vital to us, so we constantly train our specialists to guarantee that all
+        <p style="color:#000;">“Our customers are vital to us, so we constantly train our specialists to guarantee that all
             medicines <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are of the most astounding standard and that every customer gets
                 the best consideration”</p>
-        <p>"Our customer’s wellbeing and security is our best need with the utilization of creative 
+        <p style="color:#000;">"Our customer’s wellbeing and security is our best need with the utilization of creative 
             pipeless<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spa seats and sanitized instruments. 
             Brilliant customer benefit is out mission."</p>
-        <p>The specialities in the parlour are,apart from regular bleachings and
+        <p style="color:#000;">The specialities in the parlour are,apart from regular bleachings and
     Facials,many types of hairstyles,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bridal and cine make-up and diffrent types of Facials 
     and Fashion
     hair colourings</p>
@@ -159,6 +165,81 @@
         margin-bottom: 50px;
         width:100px;
     }
+    body{
+    background-color:white;
+    font-family: sans-serif;
+}
+h4{
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    width: 100%;
+    font-size: 24px;
+}
+p{
+    text-align: center;
+    color: rgb(192, 182, 182);
+    
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.card{
+    position: relative;
+    margin-top:50px;
+    
+}
+.first-card{
+    width:400px;
+    height:450px;
+    background-color:rgb(95, 56, 56);
+    position: relative;
+    text-align:center;
+    margin-left:200px;
+  
+}
+.first-card img{
+    width:100%;
+   
+}
+
+
+.card:hover .back-card{
+    transform: rotate(5deg);
+    
+}
+.card:hover .thid-card{
+    transform: rotate(-5deg);
+}
+button{
+    background-color: #fff;
+   
+    padding:10px 5px;
+    color: #000;
+    text-align: center;
+    transition: all 0.4s;
+    font-size: 16px;
+  
+}
+
+.card:hover button{
+    background-color: #fff;
+    color: #000;
+font-weight: bold;
+    }
+    #img1
+    {
+        margin-left:-2px;
+        display: flex;
+        flex-wrap: wrap;
+       justify-content: space-between;
+    }
+.box{
+    margin-bottom:335px;
+}
     </style>
 <DIV class="service" id="service">
      <div class="hea"><br><br>
@@ -170,10 +251,11 @@
   <div style="margin-top:-350px">
     
             <?php
-             $con=mysqli_connect("localhost","root","","db");
+           
              $query="select * from tbl_category";
              $result=mysqli_query($con,$query);
              $re=mysqli_num_rows($result)>0;
+             
              if($re)
              {
                 while($row1=mysqli_fetch_array($result))
@@ -181,12 +263,24 @@
                   
                     ?>
                      <div class="box">
+                     <div class="container">
+        <div class="card">
+            <div class="first-card">
                      
                           
-                               <img src="\admin\uploads\<?php echo $row1['category_image'];?>" height=300px width=300px alt="Service image">
-                             <font color="brown"size="5"> <center> <h3 class="card-title"><?php echo $row1['category_name']; ?></h3></center></font>
-              
-                        
+                               <img id="img1"src="\admin\uploads\<?php echo $row1['category_image'];?>" height=300px width=300px alt="Service image">
+                             <font color="brown"size="5"> <center> <h4 class="card-title"><?php echo $row1['category_name']; ?></h4></center></font>
+                             <button><?php echo "<a href='hair.php?id=$row1[categoryid]'>"?><font color="black">View More</a></font></button>
+                       
+                             
+            </div>
+            <div class="back-card"></div>
+            <div class="thid-card"></div>
+            
+           
+        </div>
+       
+    </div>  
                                    
                               
                         

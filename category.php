@@ -1,4 +1,7 @@
 <?php
+require("connect.php");
+?>
+<?php
     include("dashboard1.php");
 ?>
 <!DOCTYPE html>
@@ -238,7 +241,7 @@ a{
     margin-top:10px;
 }
 
-.active{
+/*.active{
   text-decoration:none;
   color:white;
   background-color:green;
@@ -254,6 +257,7 @@ a{
   height:30px;
   padding:5px;
 }
+*/
 .edit{
   text-decoration:none;
   color:white;
@@ -274,11 +278,11 @@ a{
      <tr>
         <td>Category</td>
         <td>Image</td>
-        <td>Status</td>
+        <!--<td>Status</td>-->
         <td colspan="2">Actions</td>
      </tr>
      <?php
-       $con=mysqli_connect('localhost','root','','db');
+       
        $query="select * from tbl_category";
        $re=mysqli_query($con,$query);
        while($row=mysqli_fetch_array($re))
@@ -287,7 +291,8 @@ a{
           echo "<tr>";
           echo "<td>",$row['category_name'],"</td>";
           echo "<td><img src='uploads/".$row['category_image']."' height=70px width=70px></td>";
-          echo "<td>";
+            /*echo "<td>";
+        
           if($row['status']==0){
             echo "<a class='active' href='catstatus.php?id=",$row['categoryid'],"'>Active</a>";
        }
@@ -295,6 +300,7 @@ a{
          echo "<a class='deactive' href='catstatus.php?id=",$row['categoryid'],"'>Deactive</a>";
        }
        echo "</td>";
+       */
        echo "<td><a  class='edit' target='_self' href='editcat.php?id=",$row['cat_id'],"'>Edit</a></td>";
          echo "</tr>";
        }
@@ -329,7 +335,6 @@ if(isset($_POST['sub']))
   $na=$_POST['cname'];
   $pic=$_FILES['file']['name'];
   
-  $con=mysqli_connect('localhost','root','','db');
     $query="insert into tbl_category(category_name,category_image) values('$na','$pic')";
     $re=mysqli_query($con,$query);
     

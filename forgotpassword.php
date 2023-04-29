@@ -1,4 +1,6 @@
-
+<?php
+require("connect.php");
+?>
 <html>
 <head>
 <title>Ave Lux</title>
@@ -93,7 +95,7 @@ if(isset($_POST["sub"]))
 {
 
    $ps=$_POST["password"];
-   $con=mysqli_connect("localhost","root","","db");
+   
    $query="update tbl_login where username='$un' and password='$ps'";
    $re=mysqli_query($con,$query);
    $row=mysqli_fetch_array($re);

@@ -1,3 +1,6 @@
+<?php
+require("connect.php");
+?>
 <!DOCTYPE html>
 <!-- Created By CodingLab - www.codinglabweb.com -->
 <html lang="en" dir="ltr">
@@ -58,7 +61,7 @@
             {
         $na=$_POST["name"];
         $msg=$_POST["msg"];
-        $con=mysqli_connect("localhost","root","","db");
+        
         $loginid = $_SESSION['loginid'];
         $query="select * from tbl_login where loginid='$loginid';";
              $re=mysqli_query($con,$query);
